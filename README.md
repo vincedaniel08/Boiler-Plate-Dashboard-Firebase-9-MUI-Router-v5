@@ -1,70 +1,176 @@
-# Getting Started with Create React App
+# BitTechie
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[bit](https://vincedaniel.netlify.app) uses [React.js](https://reactjs.org) and
+[Mui](https://mui.com). To get started, follow the guidelines provided below.
 
-## Available Scripts
+## Run Locally
 
-In the project directory, you can run:
+1. Clone or download this repository
 
-### `npm start`
+   ```sh
+   git clone https://github.com/vincedaniel08/Boiler-Plate-Dashboard-Firebase-9-MUI-Router-v5.git
+   ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. Go to the project directory
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+   ```sh
+   cd Boiler-Plate-Dashboard-Firebase-9-MUI-Router-v5
+   ```
 
-### `npm test`
+3. Install dependencies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```sh
+   npm install
+   ```
 
-### `npm run build`
+4. Start the local server
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```sh
+   npm start
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## File Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+- src
+  - actions
+  - api
+  - components
+    - About
+    - AccountHeader
+    - AccountPerformanceVideo
+    - ...
+  - containers
+    - Account
+      - components
+      - index.js
+      - index.scss
+      - styles.module.scss
+    - Band
+      - components
+      - index.js
+      - index.scss
+      - styles.module.scss
+    - ...
+  - layouts
+  - ...
+```
 
-### `npm run eject`
+## Naming Conventions
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Use **lowercase** in naming routes within the 'pages' folder
+- Use **PascalCase** naming convention when creating folders inside the 'src' folder
+- Folder and File Naming - PascalCase
+- Folders and files with names should be lowercase
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Referencing Styles
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Example:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+styles.module.scss
 
-## Learn More
+```scss
+.hello-world {
+  // ...
+}
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+.hello {
+  // ...
+}
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+HelloWorld.jsx
 
-### Code Splitting
+```jsx
+import React from "react";
+import styles from "./styles.module.scss";
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+const HelloWorld = () => {
+  return (
+    <main>
+      <div className={styles["hello-world"]}></div>
 
-### Analyzing the Bundle Size
+      {/* or */}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+      <div className={styles.hello}></div>
+    </main>
+  );
+};
 
-### Making a Progressive Web App
+export default HelloWorld;
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## CSS Hacks
 
-### Advanced Configuration
+Using `styles.hello` as a class name has limitations when selecting Ant Design's class names. The
+solution you may do to resolve this is to import your stylesheet in the **theme.scss** file inside
+**src/styles** directory.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Make sure your class name is unique so it will not overlap or collide with other class names.
 
-### Deployment
+Follow the `[page-name]-[property/attribute/element]-[additional]` pattern for naming class as
+follows:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```scss
+.login-modal {
+  // ...
+}
 
-### `npm run build` fails to minify
+.login-modal-container {
+  // ...
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+.login-modal-body {
+  // ...
+}
+
+.login-modal-title {
+  // ...
+}
+```
+
+You may also import other stylesheets on your imported file.
+
+theme.scss
+
+```scss
+@import "/login/style.scss";
+```
+
+login/style.scss
+
+```scss
+@import "../button/style.scss";
+
+.login-modal {
+  // ...
+}
+```
+
+## Development Workflow and Notes
+
+Naming a branch should be in all small letters
+
+Examples:
+
+- feature/landing-page
+- bugfix/landing-page
+- hotfix/landing-page
+
+Other Notes:
+
+- Only branch out to dev
+- Always commit the changes you have made in small letters
+- Limit the line of code width to 100 by executing `npm run format`
+- Use [Ant Design's Components](https://ant.design/components/overview) as much as possible
+
+## Folders
+
+| Directory      | Description                                         |
+| -------------- | --------------------------------------------------- |
+| pages          | Page routes                                         |
+| public         | Assets such as pictures, fonts, icons, videos, etc. |
+| src/api        | Axios and other services                            |
+| src/components | Reusable components                                 |
+| src/containers | Page components                                     |
+| src/styles     | Global styles                                       |
